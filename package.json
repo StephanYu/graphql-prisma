@@ -1,10 +1,11 @@
 {
-  "name": "graphql-blog",
+  "name": "graphql-prisma",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/index.js -e js,graphql --exec babel-node"
+    "start": "nodemon src/index.js -e js,graphql --exec babel-node",
+    "get-schema": "graphql-codegen --config ./codegen.yml"
   },
   "keywords": [],
   "author": "",
@@ -13,10 +14,14 @@
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "graphql-cli": "^4.1.0",
     "graphql-yoga": "^1.18.3",
+    "prisma-binding": "^2.3.16",
     "uuid": "^7.0.3"
   },
   "devDependencies": {
+    "@graphql-cli/codegen": "^1.17.12",
+    "@graphql-codegen/schema-ast": "^1.17.8",
     "nodemon": "^2.0.3"
   }
 }
