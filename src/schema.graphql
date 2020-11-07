@@ -2,18 +2,21 @@ type Query {
   users(query: String): [User!]!
   posts(query: String): [Post!]!
   comments(query: String): [Comment!]!
+  post(id: ID!): Post!
+  myProfile: User!
+  myPosts(query: String): [Post!]!
 }
 
 type Mutation {
-  createUser(data: createUserInput!): AuthPayload!
-  loginUser(data: loginUserInput!): AuthPayload!
-  updateUser(data: updateUserInput!): User!
+  createUser(data: CreateUserInput!): AuthPayload!
+  loginUser(data: LoginUserInput!): AuthPayload!
+  updateUser(data: UpdateUserInput!): User!
   deleteUser: User!
-  createPost(data: createPostInput!): Post!
-  updatePost(id: ID!, data: updatePostInput!): Post!
+  createPost(data: CreatePostInput!): Post!
+  updatePost(id: ID!, data: UpdatePostInput!): Post!
   deletePost(id: ID!): Post!
-  createComment(data: createCommentInput!): Comment!
-  updateComment(id: ID!, data: updateCommentInput!): Comment!
+  createComment(data: CreateCommentInput!): Comment!
+  updateComment(id: ID!, data: UpdateCommentInput!): Comment!
   deleteComment(id: ID!): Comment!
 }
 
@@ -27,47 +30,47 @@ type AuthPayload {
   token: String!
 }
 
-input createUserInput {
+input CreateUserInput {
   name: String!
   email: String!
   password: String!
 }
 
-input loginUserInput {
+input LoginUserInput {
   email: String!
   password: String!
 }
 
-input updateUserInput {
+input UpdateUserInput {
   name: String
   email: String
 }
 
-input createPostInput {
+input CreatePostInput {
   title: String! 
   body: String! 
   published: Boolean! 
 }
 
-input updatePostInput {
+input UpdatePostInput {
   title: String
   body: String
   published: Boolean
 }
 
-input createCommentInput {
+input CreateCommentInput {
   text: String! 
   post: ID!
 }
 
-input updateCommentInput {
+input UpdateCommentInput {
   text: String
 }
 
 type User {
   id: ID!
   name: String!
-  email: String!
+  email: String
   password: String!
   posts: [Post!]!
   comments: [Comment!]!
