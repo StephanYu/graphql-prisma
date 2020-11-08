@@ -1,13 +1,15 @@
 import getUserId from "../utils/getUserId";
 
 const Query = {
-  users(parent, args, { prisma }, info) {
+  users(parent, { query }, { prisma }, info) {
     const opArgs = {};
-    if (args.query) {
+
+    if (query) {
       opArgs.where = {
-        OR: [{ name_contains: args.query }, { email_contains: args.query }],
+        name_contains: query,
       };
     }
+
     return prisma.query.users(opArgs, info);
   },
   posts(parent, { query }, { prisma }, info) {
